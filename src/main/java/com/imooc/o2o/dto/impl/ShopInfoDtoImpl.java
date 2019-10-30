@@ -1,6 +1,6 @@
 package com.imooc.o2o.dto.impl;
 
-import com.imooc.o2o.dto.CreateShopDto;
+import com.imooc.o2o.dto.ShopInfoDto;
 import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.ShopKind;
 import com.imooc.o2o.service.AreaService;
@@ -16,17 +16,17 @@ import java.util.Map;
  * @author 吴笛
  */
 @Component
-public class CreateShopDtoImpl implements CreateShopDto {
+public class ShopInfoDtoImpl implements ShopInfoDto {
   private ShopKindService shopKindService;
   private AreaService areaService;
 
   @Autowired
-  public CreateShopDtoImpl(ShopKindService shopKindService) {
+  public ShopInfoDtoImpl(ShopKindService shopKindService) {
     this.shopKindService = shopKindService;
   }
 
   @Autowired
-  public CreateShopDtoImpl(ShopKindService shopKindService, AreaService areaService) {
+  public ShopInfoDtoImpl(ShopKindService shopKindService, AreaService areaService) {
     this.shopKindService = shopKindService;
     this.areaService = areaService;
   }

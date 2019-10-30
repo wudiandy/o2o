@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * @author wudi
  */
-public interface CreateShopDto {
+public interface ShopInfoDto {
   /**
    * 取得注册商铺页面需要的信息
    *

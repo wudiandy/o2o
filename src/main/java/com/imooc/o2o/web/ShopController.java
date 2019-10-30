@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author wudi
+ */
 @Controller
 @RequestMapping("/shop")
 public class ShopController {
@@ -34,7 +37,7 @@ public class ShopController {
   @RequestMapping("/createShop")
   @ResponseBody
   public Map<String, String> createShop(HttpServletRequest request) {
-    Map<String, String> returnMap = new HashMap<>();
+    Map<String, String> returnMap = new HashMap<>(16);
     String jsonStr = request.getParameter("shop");
 
     try {
@@ -58,11 +61,19 @@ public class ShopController {
   /**
    * 访问创建店铺的页面
    *
-   * @param request 没有用
    * @return 页面解析地址
    */
   @RequestMapping("/showCreateShopPage")
-  public String showCreateShopPage(HttpServletRequest request) {
+  public String showCreateShopPage() {
     return "/shop/createShop";
+  }
+
+  @RequestMapping("/init/create/shop")
+  @ResponseBody
+  public Map<String, Object> getCreateShopPageInitInfo() {
+    Map<String, Object> map = new HashMap<>(16);
+    // 占位。用于暂时消除warning
+    map.put("", "");
+    return map;
   }
 }
