@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 命名空间
+     通常情况下，命名空间的值就是当前操作实体类的全名称
+-->
+<mapper namespace="com.imooc.o2o.dao.ShopKindDao">
+  <select id="getShopKindList" resultType="com.imooc.o2o.entity.ShopKind">
+    SELECT sk.shop_kind_id,
+           sk.priority,
+           sk.parent_id,
+           sk.name,
+           sk.description,
+           sk.img,
+           sk.create_time,
+           sk.last_edit_time
+    FROM shop_kind AS sk;
+  </select>
+</mapper>

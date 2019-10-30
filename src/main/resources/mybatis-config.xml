@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <!-- <settings>用于设置MyBatis的全局属性 -->
+  <settings>
+    <!-- 允许MyBatis使用jdbc的getGeneratedKeys()方法来获取数据库自动生成的主键值，默认值是false -->
+    <setting name="useGeneratedKeys" value="true"/>
+    <!--
+    使用列标签代替列名。
+    具体还是不大理解
+    -->
+    <setting name="useColumnLabel" value="true"/>
+    <!-- 开启驼峰命名规则映射 -->
+    <setting name="mapUnderscoreToCamelCase" value="true"/>
+  </settings>
+</configuration>

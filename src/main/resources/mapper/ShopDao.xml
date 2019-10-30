@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace 命名空间
+     通常情况下，命名空间的值就是当前操作实体类的全名称
+-->
+<mapper namespace="com.imooc.o2o.dao.ShopDao">
+  <insert id="insert" parameterType="com.imooc.o2o.entity.Shop">
+    insert into o2o.shop(priority, shop_img, name, description, contact_info, addr, area_id, shop_kind_id, person_info_id, status, create_time, last_edit_time, advice)
+    value (#{priority}, #{shopImg}, #{name}, #{description}, #{contactInfo}, #{addr}, #{area.areaId}, #{shopKind.shopKindId}, #{personInfo.personId}, #{status}, #{createTime}, #{lastEditTime}, #{advice});
+  </insert>
+</mapper>

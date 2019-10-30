@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  <!-- 使用这个标签导入配置文件就可以通过类似${jdbc.url}的方式来使用jdbc.properties中的配置信息 -->
+  <context:property-placeholder location="classpath:jdbc.properties"/>
+
+  <!-- 数据库连接池 -->
+  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <!-- 数据库连接信息 -->
+    <property name="driverClass" value="${jdbc.driver}"/>
+    <property name="jdbcUrl" value="${jdbc.url}"/>
+    <property name="user" value="${jdbc.username}"/>
+    <property name="password" value="${jdbc.password}"/>
+
+    <!-- c3p0属性设置 -->
+    <property name="maxPoolSize" value="30"/>
+    <property name="minPoolSize" value="10"/>
+    <!-- 连接超时事件 -->
+    <property name="checkoutTimeout" value="10000"/>
+    <!-- 重试次数 -->
+    <property name="acquireRetryAttempts" value="2"/>
+  </bean>
+
+  <!-- sqlSessionFactory -->
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <!-- 配置MyBatis配置文件的位置 -->
+    <property name="configLocation" value="classpath:mybatis-config.xml"/>
+    <!-- 配置数据库映射文件的位置 -->
+    <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+  </bean>
+
+  <!-- 动态实现dao接口 -->
+  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <!-- 关联session factory -->
+    <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    <!-- 自动实现com.imooc.o2o.dao下面的接口 -->
+    <property name="basePackage" value="com.imooc.o2o.dao"/>
+  </bean>
+</beans>
