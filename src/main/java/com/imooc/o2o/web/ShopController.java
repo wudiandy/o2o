@@ -1,6 +1,9 @@
 package com.imooc.o2o.web;
 
+import com.imooc.o2o.entity.Area;
 import com.imooc.o2o.entity.Shop;
+import com.imooc.o2o.entity.ShopKind;
+import com.imooc.o2o.service.AreaService;
 import com.imooc.o2o.service.ShopService;
 import com.imooc.o2o.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,10 +24,12 @@ import java.util.Map;
 @RequestMapping("/shop")
 public class ShopController {
   private ShopService shopService;
+  private AreaService areaService;
 
   @Autowired
-  public ShopController(ShopService shopService) {
+  public ShopController(ShopService shopService, AreaService areaService) {
     this.shopService = shopService;
+    this.areaService = areaService;
   }
 
   /**
@@ -72,8 +78,12 @@ public class ShopController {
   @ResponseBody
   public Map<String, Object> getCreateShopPageInitInfo() {
     Map<String, Object> map = new HashMap<>(16);
-    // 占位。用于暂时消除warning
-    map.put("", "");
+    List<ShopKind> shopKindList;
+    List<Area> areaList;
+    shopKindList = shopService.getShopKindList();
+    areaList = areaService.getAllArea();
+    map.put("shopKindList", shopKindList);
+    map.put("areaList", areaList);
     return map;
   }
 }

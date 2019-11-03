@@ -5,6 +5,9 @@ import com.imooc.o2o.entity.Shop;
 
 import java.io.IOException;
 
+/**
+ * @author wudi
+ */
 public class JsonUtil {
   private static ObjectMapper objectMapper = new ObjectMapper();
 
