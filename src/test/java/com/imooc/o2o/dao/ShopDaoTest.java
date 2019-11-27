@@ -17,4 +17,9 @@ public class ShopDaoTest extends BaseTest {
     int affectedRows = shopDao.insert(shop);
     Assert.assertTrue(affectedRows > 0);
   }
+
+  @Test
+  public void queryShopByShopName() {
+    shopDao.queryShopByShopName("");
+  }
 }

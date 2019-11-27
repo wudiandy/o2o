@@ -33,6 +33,8 @@ public class ShopServiceImpl implements ShopService {
   @Override
   @Transactional
   public int createShop(Shop shop) {
+    // TODO 检查店铺是否已经创建过了
+
     return shopDao.insert(shop);
   }
 

@@ -2,6 +2,9 @@ package com.imooc.o2o.entity;
 
 import java.util.Date;
 
+/**
+ * @author wudi
+ */
 public class Shop {
   private Long shopId;
   private Integer priority;

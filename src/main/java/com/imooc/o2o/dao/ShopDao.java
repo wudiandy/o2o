@@ -11,4 +11,11 @@ public interface ShopDao {
    * @return 插入操作影响数据表的行数
    */
   int insert(Shop shop);
+
+  /**
+   * 根据商铺名称查询商铺对象
+   * @param shopName  商铺名称
+   * @return          商铺对象
+   */
+  Shop queryShopByShopName(String shopName);
 }
