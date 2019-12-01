@@ -21,6 +21,15 @@ $(function () {
         formData.append("shopImg", $("#img")[0].files[0]);
         // 取得店铺简介
         formData.append("desc", $("#description").val());
+        // 取得用户输入的验证码
+        const verificationCode = $("#inputCode").val();
+        if (!verificationCode) {
+            // 如果验证是空的
+            // 提示用用户输入验证码
+            alert("请输入验证码");
+            return;
+        }
+        formData.append("verificationCode", verificationCode);
 
         // 调用新增商铺接口
         $.ajax({

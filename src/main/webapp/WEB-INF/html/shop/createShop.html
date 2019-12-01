@@ -110,6 +110,22 @@
                             </div>
                         </div>
                     </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">验证码</div>
+                                <div class="item-input">
+                                    <label>
+                                        <input id="inputCode" type="text" placeholder="验证码">
+                                    </label>
+                                </div>
+                                <div class="item-input">
+                                    <img id="verificationCode" src="../kaptcha" alt="验证码" title="验证码"
+                                         onclick="changeVerificationCode(this)">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="content-block">
@@ -131,7 +147,8 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
-    <script type="text/javascript" src="../resources/js/createShop.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../resources/js/common/common.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../resources/js/shop/createShop.js" charset="UTF-8"></script>
 </div>
 </body>
 </html>

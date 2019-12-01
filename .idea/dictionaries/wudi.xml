@@ -5,9 +5,11 @@
       <w>appconfig</w>
       <w>baidu</w>
       <w>imooc</w>
+      <w>kaptcha</w>
       <w>mchange</w>
       <w>msui</w>
       <w>superadmin</w>
+      <w>textproducer</w>
       <w>wudi</w>
     </words>
   </dictionary>
