@@ -46,6 +46,9 @@ $(function () {
                 } else {
                     // TODO 显示一个店铺添加失败的提示
                 }
+
+                // 更换验证码
+                $("#verificationCode").click();
             },
             error: function (jqXHR) {
                 console.error(jqXHR.statusText);
