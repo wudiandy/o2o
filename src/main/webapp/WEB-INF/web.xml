@@ -46,11 +46,6 @@
       <param-name>kaptcha.image.height</param-name>
       <param-value>40</param-value>
     </init-param>
-    <!-- 字体大小 -->
-    <init-param>
-      <param-name>kaptcha.testproducer.font.size</param-name>
-      <param-value>43</param-value>
-    </init-param>
   </servlet>
   <servlet-mapping>
     <servlet-name>kaptcha</servlet-name>
