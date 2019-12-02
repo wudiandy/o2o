@@ -5,8 +5,8 @@ $(function () {
     init();
 
     // 绑定注册按钮点击事件
-    $("#submit").click(function () {
-        var formData = new FormData();
+    $("#submit").on("click", function () {
+        const formData = new FormData();
         // 取得商铺名称
         formData.append("shopName", $("#shopName").val());
         // 取得商铺分类ID
@@ -41,10 +41,10 @@ $(function () {
             dataType: "json",
             success: function (data) {
                 if (data.result === "success") {
-                    // TODO 显示一个店铺添加成功的提示
+                    alert(data.message);
                     // TODO 接下来如何跳转
                 } else {
-                    // TODO 显示一个店铺添加失败的提示
+                    alert(data.message);
                 }
 
                 // 更换验证码

@@ -8,6 +8,7 @@ import com.imooc.o2o.entity.ShopKind;
 import com.imooc.o2o.service.AreaService;
 import com.imooc.o2o.service.ShopService;
 import com.imooc.o2o.utils.ImageUtil;
+import com.imooc.o2o.utils.VerificationCodeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,9 +64,30 @@ public class ShopController {
       return returnMap;
     }
 
+    // 检查验证码输入是否正确
+    if (!VerificationCodeUtil.checkVerificationCodeUtil(request)) {
+      returnMap.put("result", "failed");
+      returnMap.put("message", "验证码错误");
+      return returnMap;
+    }
+
     MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 
     // 通过参数构建商铺对象
+    Shop shop = getShop(request, multipartHttpServletRequest);
+
+    // 添加商铺对象
+    int affectedRows = shopService.createShop(shop);
+    if (affectedRows > 0) {
+      returnMap.put("result", "success");
+    } else {
+      returnMap.put("result", "failed");
+    }
+
+    return returnMap;
+  }
+
+  private Shop getShop(HttpServletRequest request, MultipartHttpServletRequest multipartHttpServletRequest) throws Exception {
     Shop shop = new Shop();
     shop.setName(request.getParameter("shopName") == null ? "" : request.getParameter("shopName"));
     List<ShopKind> shopKindList = shopService.getShopKindList();
@@ -125,16 +147,7 @@ public class ShopController {
 
     // 设置最后编辑时间，店铺首次创建时，最后编辑时间就是店铺创建时间
     shop.setLastEditTime(shop.getCreateTime());
-
-    // 添加商铺对象
-    int affectedRows = shopService.createShop(shop);
-    if (affectedRows > 0) {
-      returnMap.put("result", "success");
-    } else {
-      returnMap.put("result", "failed");
-    }
-
-    return returnMap;
+    return shop;
   }
 
   /**
