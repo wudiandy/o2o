@@ -19,7 +19,9 @@ public class ShopDaoTest extends BaseTest {
   }
 
   @Test
-  public void queryShopByShopName() {
-    shopDao.queryShopByShopName("");
+  public void queryShopById() {
+    int shopId = 6;
+    Shop shop = shopDao.queryShopById(shopId);
+    Assert.assertEquals("七杯茶", shop.getName());
   }
 }

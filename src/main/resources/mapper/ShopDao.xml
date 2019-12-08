@@ -12,17 +12,46 @@
   </insert>
 
   <resultMap id="shopResultMap" type="Shop">
-    <association property="area" column="area_id" javaType="Area"/>
-    <association property="shopKind" column="shop_kind_id" javaType="ShopKind"/>
-    <association property="personInfo" column="person_info_id" javaType="PersonInfo"/>
+    <id column="shop_id" property="shopId"/>
+    <result column="priority" property="priority"/>
+    <result column="shop_img" property="shopImg"/>
+    <result column="name" property="name"/>
+    <result column="description" property="description"/>
+    <result column="contact_info" property="contactInfo"/>
+    <result column="addr" property="addr"/>
+    <association property="area">
+      <id column="area_id" property="areaId"/>
+      <result column="area_name" property="areaName"/>
+    </association>
+    <association property="shopKind">
+      <id column="shop_kind_id" property="shopKindId"/>
+      <result column="name" property="name"/>
+    </association>
+    <association property="personInfo">
+      <id column="person_id" property="personId"/>
+      <result column="person_name" property="personName"/>
+    </association>
   </resultMap>
 
-  <select id="queryShopByShopName" resultType="Shop" resultMap="shopResultMap">
-    select *
-    from shop as s
-    where s.name = #{shopName}
-    left outer join area as a on s.area_id = a.area_id
-    left outer join shop_kind as sk on s.shop_kind_id = sk.shop_kind_id
-    left outer join person_info as pi on s.person_info_id = pi.person_id;
+  <select id="queryShopById" resultMap="shopResultMap">
+    SELECT
+    s.shop_id,
+    s.priority,
+    s.shop_img,
+    s.name,
+    s.description,
+    s.contact_info,
+    s.addr,
+    a.area_id,
+    a.area_name,
+    sk.shop_kind_id,
+    sk.name as shop_kind_name,
+    p.person_id,
+    p.person_name
+    FROM o2o.shop s
+    LEFT OUTER JOIN o2o.area a ON a.area_id = s.area_id
+    LEFT OUTER JOIN o2o.shop_kind sk ON sk.shop_kind_id = s.shop_kind_id
+    LEFT OUTER JOIN o2o.person_info p ON p.person_id = s.person_info_id
+    WHERE s.shop_id = #{id};
   </select>
 </mapper>

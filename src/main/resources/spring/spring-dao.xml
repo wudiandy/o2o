@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
   <!-- 使用这个标签导入配置文件就可以通过类似${jdbc.url}的方式来使用jdbc.properties中的配置信息 -->
-  <context:property-placeholder location="classpath:*.properties"/>
+  <context:property-placeholder location="classpath:app.properties"/>
 
   <!-- 数据库连接池 -->
   <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

@@ -3,6 +3,9 @@ package com.imooc.o2o.dao;
 import com.imooc.o2o.entity.Shop;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author wudi.andy@qq.com
+ */
 @Repository
 public interface ShopDao {
   /**
@@ -13,9 +16,10 @@ public interface ShopDao {
   int insert(Shop shop);
 
   /**
-   * 根据商铺名称查询商铺对象
-   * @param shopName  商铺名称
-   * @return          商铺对象
+   * Get shop object based on shop id
+   *
+   * @param id shop id
+   * @return shop object
    */
-  Shop queryShopByShopName(String shopName);
+  Shop queryShopById(int id);
 }
