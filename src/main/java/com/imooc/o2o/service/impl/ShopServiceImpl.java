@@ -31,7 +31,7 @@ public class ShopServiceImpl implements ShopService {
    * @param shop 商店对象
    */
   @Override
-  @Transactional
+  @Transactional(rollbackFor = Exception.class)
   public int createShop(Shop shop) {
     // TODO 检查店铺是否已经创建过了
 
@@ -46,5 +46,16 @@ public class ShopServiceImpl implements ShopService {
   @Override
   public List<ShopKind> getShopKindList() {
     return shopKindDao.getShopKindList();
+  }
+
+  /**
+   * 根据商铺ID获取商铺对象
+   *
+   * @param id 商铺ID
+   * @return 商铺对象
+   */
+  @Override
+  public Shop getShopInformationById(int id) {
+    return shopDao.queryShopById(id);
   }
 }

@@ -9,10 +9,13 @@ import com.imooc.o2o.service.AreaService;
 import com.imooc.o2o.service.ShopService;
 import com.imooc.o2o.utils.ImageUtil;
 import com.imooc.o2o.utils.VerificationCodeUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -36,6 +39,8 @@ import java.util.Map;
 public class ShopController {
   private ShopService shopService;
   private AreaService areaService;
+
+  private static final Logger logger = LoggerFactory.getLogger(ShopController.class);
 
   @Autowired
   public ShopController(ShopService shopService, AreaService areaService) {
@@ -171,5 +176,31 @@ public class ShopController {
     map.put("shopKindList", shopKindList);
     map.put("areaList", areaList);
     return map;
+  }
+
+  /**
+   * 通过商铺ID获取商铺信息
+   *
+   * @param id 商铺ID
+   * @return 商铺信息
+   */
+  @RequestMapping(value = "/getShopInfoById", method = RequestMethod.POST)
+  @ResponseBody
+  public Map<String, Object> getShopInfoById(@RequestParam int id) {
+    logger.debug("id = " + id);
+    Shop shop = shopService.getShopInformationById(id);
+    Map<String, Object> map = new HashMap<>(16);
+    map.put("shopInfo", shop);
+    return map;
+  }
+
+  /**
+   * 返回商铺信息变更页面
+   *
+   * @return 页面地址
+   */
+  @RequestMapping("/update")
+  public String showUpdateShopPage() {
+    return "/shop/updateShop";
   }
 }

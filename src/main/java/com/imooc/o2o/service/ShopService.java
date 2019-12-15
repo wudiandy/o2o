@@ -23,4 +23,12 @@ public interface ShopService {
    * @return 商铺类型列表
    */
   List<ShopKind> getShopKindList();
+
+  /**
+   * 根据商铺ID获取商铺对象
+   *
+   * @param id 商铺ID
+   * @return 商铺对象
+   */
+  Shop getShopInformationById(int id);
 }
