@@ -6,11 +6,18 @@ function changeVerificationCode(img) {
     img.src = "../kaptcha?" + Math.floor(Math.random() * 100);
 }
 
-/**
- * 从请求URL中根据参数名取出对应参数值
- *
- * @param name
- */
-function getParameter(name) {
-    // TODO 从请求URL中根据参数名取出对应参数值
-}
+let commonUtil = {
+    /**
+     * 从请求URL中根据参数名取出对应参数值
+     *
+     * @param name
+     */
+    "getParameter": function (name) {
+        let reg = new RegExp(name + "=*");
+        let matched = window.location.search.substr(1).match(reg);
+        if (matched != null) {
+            return matched.input.split("=")[1];
+        }
+        return "";
+    }
+};

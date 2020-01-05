@@ -1,13 +1,11 @@
 package com.imooc.o2o.utils;
 
-import org.apache.commons.codec.digest.Md5Crypt;
-
 /**
- * @author wudi
+ * @author 吴笛
  */
 public class StringUtil {
   public static String getTimeBasedRandomString() {
     String timeStampStr = String.valueOf(System.currentTimeMillis());
-    return Md5Crypt.md5Crypt(timeStampStr.getBytes());
+    return MessageDigestUtil.string2Md5(timeStampStr);
   }
 }

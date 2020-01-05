@@ -2,6 +2,9 @@ package com.imooc.o2o.entity;
 
 import java.util.Date;
 
+/**
+ * @author 吴笛
+ */
 public class ShopKind {
   private Long shopKindId;
   private Integer priority;

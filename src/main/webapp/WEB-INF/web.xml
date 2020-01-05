@@ -44,7 +44,7 @@
     <!-- 图片高度 -->
     <init-param>
       <param-name>kaptcha.image.height</param-name>
-      <param-value>40</param-value>
+      <param-value>60</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>

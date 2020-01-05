@@ -34,7 +34,7 @@
   </resultMap>
 
   <select id="queryShopById" resultMap="shopResultMap">
-    SELECT
+    select
     s.shop_id,
     s.priority,
     s.shop_img,
@@ -48,10 +48,45 @@
     sk.name as shop_kind_name,
     p.person_id,
     p.person_name
-    FROM o2o.shop s
-    LEFT OUTER JOIN o2o.area a ON a.area_id = s.area_id
-    LEFT OUTER JOIN o2o.shop_kind sk ON sk.shop_kind_id = s.shop_kind_id
-    LEFT OUTER JOIN o2o.person_info p ON p.person_id = s.person_info_id
-    WHERE s.shop_id = #{id};
+    from o2o.shop s
+    left outer join o2o.area a on a.area_id = s.area_id
+    left outer join o2o.shop_kind sk ON sk.shop_kind_id = s.shop_kind_id
+    left outer join o2o.person_info p ON p.person_id = s.person_info_id
+    where s.shop_id = #{id};
   </select>
+
+  <update id="update" parameterType="Shop">
+    update o2o.shop as s
+    <if test="priority != 0">
+      set s.priority = #{priority}
+    </if>
+    <if test="shopImg != null">
+      set s.shop_img = #{shopImg}
+    </if>
+    <if test="name != null">
+      set s.name = #{name}
+    </if>
+    <if test="description != null">
+      set s.description = #{description}
+    </if>
+    <if test="contact_info != null">
+      set s.contact_info = #{contactInfo}
+    </if>
+    <if test="addr != null">
+      set s.addr = #{addr}
+    </if>
+    <if test="area.areaId != null">
+      set s.area_id = #{area.areaId}
+    </if>
+    <if test="shopKind.shopKindId != null">
+      set s.shop_kind_id = #{shopKind.shopKindId}
+    </if>
+    <if test="personInfo.personInfoId != null">
+      set s.person_info_id = #{personInfo.personInfoId}
+    </if>
+    <if test="status != null">
+
+    </if>
+    where shop_id = #{shopId}
+  </update>
 </mapper>

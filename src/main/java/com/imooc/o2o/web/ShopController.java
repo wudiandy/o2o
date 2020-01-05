@@ -86,8 +86,10 @@ public class ShopController {
     int affectedRows = shopService.createShop(shop);
     if (affectedRows > 0) {
       returnMap.put("result", "success");
+      returnMap.put("message", "恭喜你，成功创建店铺！");
     } else {
       returnMap.put("result", "failed");
+      returnMap.put("message", "很遗憾，未能成功创建店铺！");
     }
 
     return returnMap;
@@ -114,24 +116,25 @@ public class ShopController {
     shop.setDescription(request.getParameter("desc"));
 
     CommonsMultipartFile commonsMultipartFile = (CommonsMultipartFile) multipartHttpServletRequest.getFile("shopImg");
-    try {
-      assert commonsMultipartFile != null;
-      InputStream inputStream = commonsMultipartFile.getInputStream();
-      byte[] bytes = new byte[inputStream.available()];
-      int readBytes = inputStream.read(bytes);
-      // 如果没有读到任何字符，说明临时文件损坏
-      if (readBytes <= 0) {
-        throw new Exception("临时文件损坏");
-      }
-      inputStream.close();
+    if (commonsMultipartFile != null) {
+      try {
+        InputStream inputStream = commonsMultipartFile.getInputStream();
+        byte[] bytes = new byte[inputStream.available()];
+        int readBytes = inputStream.read(bytes);
+        // 如果没有读到任何字符，说明临时文件损坏
+        if (readBytes <= 0) {
+          throw new Exception("临时文件损坏");
+        }
+        inputStream.close();
 
-      File file = ImageUtil.createImageFile();
-      FileOutputStream fileOutputStream = new FileOutputStream(file);
-      fileOutputStream.write(bytes);
-      fileOutputStream.close();
-      shop.setShopImg(file.getAbsolutePath());
-    } catch (IOException e) {
-      e.printStackTrace();
+        File file = ImageUtil.createImageFile();
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        fileOutputStream.write(bytes);
+        fileOutputStream.close();
+        shop.setShopImg(file.getAbsolutePath());
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     }
 
     // 设置优先级，新商铺默认优先级为1
@@ -166,7 +169,7 @@ public class ShopController {
     return "/shop/createShop";
   }
 
-  @RequestMapping("/init/create/shop")
+  @RequestMapping("/init/shop")
   @ResponseBody
   public Map<String, Object> getCreateShopPageInitInfo() {
     Map<String, Object> map = new HashMap<>(16);

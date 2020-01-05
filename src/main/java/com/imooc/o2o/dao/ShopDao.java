@@ -22,4 +22,12 @@ public interface ShopDao {
    * @return shop object
    */
   Shop queryShopById(int id);
+
+  /**
+   * 更新商铺信息
+   *
+   * @param shop 商铺对象
+   * @return 影响的行数
+   */
+  int update(Shop shop);
 }

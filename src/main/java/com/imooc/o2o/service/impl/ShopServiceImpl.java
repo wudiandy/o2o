@@ -33,9 +33,12 @@ public class ShopServiceImpl implements ShopService {
   @Override
   @Transactional(rollbackFor = Exception.class)
   public int createShop(Shop shop) {
-    // TODO 检查店铺是否已经创建过了
-
-    return shopDao.insert(shop);
+    // 检查店铺是否已经创建过了
+    if (shop.getShopId() == null) {
+      return shopDao.insert(shop);
+    } else {
+      return shopDao.update(shop);
+    }
   }
 
   /**
