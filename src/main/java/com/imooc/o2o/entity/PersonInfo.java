@@ -2,12 +2,19 @@ package com.imooc.o2o.entity;
 
 import java.util.Date;
 
+/**
+ * @author 吴笛
+ */
 public class PersonInfo {
   private Long personId;
   private String personName;
   private String imgLocation;
   private String email;
-  private String gender;
+  /**
+   * 0：女性
+   * 1：男性
+   */
+  private Integer gender;
   /**
    * 0：不可用
    * 1：可用
@@ -54,11 +61,11 @@ public class PersonInfo {
     this.email = email;
   }
 
-  public String getGender() {
+  public Integer getGender() {
     return gender;
   }
 
-  public void setGender(String gender) {
+  public void setGender(Integer gender) {
     this.gender = gender;
   }
 
