@@ -31,4 +31,11 @@ public interface ShopService {
    * @return 商铺对象
    */
   Shop getShopInformationById(int id);
+
+  /**
+   * 通过店主ID取得店铺列表
+   * @param id  店主ID
+   * @return    店铺列表
+   */
+  List<Shop> getShopListByOwnerId(Long id);
 }

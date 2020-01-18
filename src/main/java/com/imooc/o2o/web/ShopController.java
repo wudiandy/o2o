@@ -209,4 +209,30 @@ public class ShopController {
     model.addAttribute("name", "wudi");
     return "/shop/updateShop";
   }
+
+  /**
+   * 返回商铺列表页面
+   *
+   * @return  商铺列表页面
+   */
+  @RequestMapping(value = "/shopList/page", method = RequestMethod.GET)
+  public String showPageShopList() {
+    return "/shop/shopList";
+  }
+
+  /**
+   * Get the current user's shop list
+   *
+   * @return shop list
+   */
+  @RequestMapping(value = "/shopList", method = RequestMethod.GET)
+  public Map<String, Object> getShopList() {
+    // fixme personInfoId should get from person information in session
+    Long personInfoId = 1L;
+    List<Shop> shopList = shopService.getShopListByOwnerId(personInfoId);
+
+    Map<String, Object> map = new HashMap<>(16);
+    map.put("shopList", shopList);
+    return map;
+  }
 }

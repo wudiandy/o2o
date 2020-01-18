@@ -89,4 +89,8 @@
     </if>
     where shop_id = #{shopId}
   </update>
+
+  <select id="queryShopByOwner" resultType="Shop">
+    select shop_id, priority, shop_img, name, description, contact_info, addr, area_id, shop_kind_id, person_info_id, status, create_time, last_edit_time, advice from shop where person_info_id = #{personInfoId}
+  </select>
 </mapper>

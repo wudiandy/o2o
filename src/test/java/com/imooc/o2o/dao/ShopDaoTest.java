@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class ShopDaoTest extends BaseTest {
   @Autowired
   private ShopDao shopDao;
@@ -23,5 +25,12 @@ public class ShopDaoTest extends BaseTest {
     int shopId = 6;
     Shop shop = shopDao.queryShopById(shopId);
     Assert.assertEquals("七杯茶", shop.getName());
+  }
+
+  @Test
+  public void queryShopByOwner() {
+    Long personInfoId = 1L;
+    List<Shop> shopList = shopDao.queryShopByOwner(personInfoId);
+    Assert.assertEquals(12, shopList.size());
   }
 }

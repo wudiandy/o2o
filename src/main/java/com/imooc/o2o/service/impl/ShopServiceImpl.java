@@ -61,4 +61,15 @@ public class ShopServiceImpl implements ShopService {
   public Shop getShopInformationById(int id) {
     return shopDao.queryShopById(id);
   }
+
+  /**
+   * 通过店主ID取得店铺列表
+   *
+   * @param id 店主ID
+   * @return 店铺列表
+   */
+  @Override
+  public List<Shop> getShopListByOwnerId(Long id) {
+    return shopDao.queryShopByOwner(id);
+  }
 }
